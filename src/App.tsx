@@ -18,7 +18,11 @@ userflow.init(import.meta.env.VITE_USERFLOW_ENV_ID);
 function App() {
   const { username } = useUsername();
   useEffect(() => {
-    userflow.identify(username);
+    if (username) {
+      userflow.identify(username);
+    } else {
+      userflow.identifyAnonymous();
+    }
   }, [username]);
 
   return (
